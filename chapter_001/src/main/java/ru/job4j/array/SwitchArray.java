@@ -1,6 +1,13 @@
 package ru.job4j.array;
 
 public class SwitchArray {
+    /**
+     * Меняем элементы местами
+     * @param array
+     * @param source
+     * @param dest
+     * @return
+     */
     public static int[] swap(int[] array, int source, int dest) {
         int temp = array[source];
         array[source] = array[dest];
