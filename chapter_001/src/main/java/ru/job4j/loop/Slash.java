@@ -7,8 +7,8 @@ public class Slash {
                 int sum = row + cell;
                 int half = (size - 1) / 2;
 
-                boolean left = ((cell < half) && (row > half) && ((sum) % half == 0)) || (row == cell);
-                boolean right = ((cell > half) && (row < half) && ((sum) % half == 0)) || (row == cell);
+                boolean left = row == cell;
+                boolean right = size - 1 - row == cell;
 
                 if (left) {
                     System.out.print("0");
