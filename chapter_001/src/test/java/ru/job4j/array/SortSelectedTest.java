@@ -8,9 +8,25 @@ import static org.hamcrest.Matchers.is;
 public class SortSelectedTest {
     @Test
     public void whenSort() {
-        int[] input = new int[] {3, 4, 1, 2, 5};
+        int[] input = new int[]{3, 4, 1, 2, 5};
         int[] result = SortSelected.sort(input);
-        int[] expect = new int[] {1, 2, 3, 4, 5};
+        int[] expect = new int[]{1, 2, 3, 4, 5};
+        assertThat(result, is(expect));
+    }
+
+    @Test
+    public void whenSortThree() {
+        int[] input = new int[]{3, 4, 1};
+        int[] result = SortSelected.sort(input);
+        int[] expect = new int[]{1, 3, 4};
+        assertThat(result, is(expect));
+    }
+
+    @Test
+    public void whenSortTwo() {
+        int[] input = new int[]{5, 1};
+        int[] result = SortSelected.sort(input);
+        int[] expect = new int[]{1, 5};
         assertThat(result, is(expect));
     }
 }
