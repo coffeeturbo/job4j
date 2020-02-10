@@ -9,12 +9,7 @@ public class EndsWith {
             char postLetter = post[i];
             char checkWord = word[word.length - post.length + i];
 
-            if (checkWord != postLetter) {
-                result = false;
-                break;
-            } else {
-                result = true;
-            }
+            result = checkWord == postLetter;
         }
 
         return result;
