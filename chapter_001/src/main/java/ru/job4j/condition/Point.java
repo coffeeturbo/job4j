@@ -11,7 +11,7 @@ public class Point {
         int powX = (int) Math.pow(divX, 2);
         int powY = (int) Math.pow((divY), 2);
 
-        return Math.sqrt(powX + powY );
+        return Math.sqrt(powX + powY);
     }
 
     public static void main(String[] args) {

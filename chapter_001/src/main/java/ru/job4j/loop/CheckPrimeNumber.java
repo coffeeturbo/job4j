@@ -5,15 +5,16 @@ public class CheckPrimeNumber {
 
         boolean prime = true;
 
-        if(finish == 1) prime = false;
+        if (finish == 1) {
+            prime = false;
+        }
 
-        for(int i = 2; i < finish; i++){
-            if((finish % i) == 0){
+        for (int i = 2; i < finish; i++) {
+            if ((finish % i) == 0) {
                 prime = false;
                 break;
             }
         }
-
 
 
         return prime;

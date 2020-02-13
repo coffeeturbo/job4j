@@ -2,6 +2,7 @@ package ru.job4j.calculator;
 
 /**
  * The Calculator.
+ *
  * @author savuskinvaceslav
  */
 public class Calculator {
@@ -16,7 +17,7 @@ public class Calculator {
 
         double result = first + second;
 
-        System.out.println(first+ " + " + second+ " = " + result);
+        System.out.println(first + " + " + second + " = " + result);
 
     }
 
@@ -30,7 +31,7 @@ public class Calculator {
 
         double result = first / second;
 
-        System.out.println(first+ " / " + second+ " = " + result);
+        System.out.println(first + " / " + second + " = " + result);
 
     }
 
@@ -44,7 +45,7 @@ public class Calculator {
 
         double result = first * second;
 
-        System.out.println(first+ " * " + second+ " = " + result);
+        System.out.println(first + " * " + second + " = " + result);
 
     }
 
@@ -58,7 +59,7 @@ public class Calculator {
 
         double result = first - second;
 
-        System.out.println(first+ " - " + second+ " = " + result);
+        System.out.println(first + " - " + second + " = " + result);
 
     }
 

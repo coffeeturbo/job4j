@@ -7,7 +7,7 @@ public class Fitness {
         int ivanProgressK = 3;
         int nikProgressK = 2;
 
-        while (ivan < nik){
+        while (ivan < nik) {
 
             ivan *= ivanProgressK;
             nik *= nikProgressK;
