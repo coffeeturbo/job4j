@@ -1,6 +1,16 @@
 package ru.job4j.array;
 
+/**
+ * The type Defragment.
+ */
 public class Defragment {
+
+    /**
+     * Compress string [ ].
+     *
+     * @param array the array
+     * @return the string [ ]
+     */
     public static String[] compress(String[] array) {
         for (int index = 0; index < array.length; index++) {
             if (array[index] == null) {
