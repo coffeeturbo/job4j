@@ -7,14 +7,19 @@ public class PointTest {
 
     @Test
     public void distance() {
-
         Point start = new Point(0, 0);
         Point end = new Point(2, 2);
-
         double expected = 2.82;
-
         double out = start.distance(end);
+        Assert.assertEquals(expected, out, 0.01);
+    }
 
+    @Test
+    public void distance3d() {
+        Point start = new Point(0, 0, 0);
+        Point end = new Point(2, 0, 2);
+        double expected = 2.82;
+        double out = start.distance3d(end);
         Assert.assertEquals(expected, out, 0.01);
     }
 }
