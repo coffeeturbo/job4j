@@ -73,6 +73,30 @@ public class Tracker {
         return item;
     }
 
+    public boolean replace(String id, Item item) {
+        boolean result = false;
+        int index = indexOf(id);
+
+        if (index >= 0) {
+            items[index] = item;
+            item.setId(id);
+            result = true;
+        }
+
+        return result;
+    }
+
+    private int indexOf(String id) {
+        int rsl = -1;
+        for (int index = 0; index < position; index++) {
+            if (items[index].getId().equals(id)) {
+                rsl = index;
+                break;
+            }
+        }
+        return rsl;
+    }
+
     /**
      * Метод генерирует уникальный ключ для заявки.
      * Так как у заявки нет уникальности полей, имени и описание. Для идентификации нам нужен уникальный ключ.
