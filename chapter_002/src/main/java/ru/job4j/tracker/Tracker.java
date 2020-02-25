@@ -3,6 +3,9 @@ package ru.job4j.tracker;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * The type Tracker.
+ */
 public class Tracker {
     private final Item[] items = new Item[100];
     private int position = 0;
@@ -73,6 +76,13 @@ public class Tracker {
         return item;
     }
 
+    /**
+     * Replace boolean.
+     *
+     * @param id   the id
+     * @param item the item
+     * @return the boolean
+     */
     public boolean replace(String id, Item item) {
         boolean result = false;
         int index = indexOf(id);
@@ -82,6 +92,26 @@ public class Tracker {
             item.setId(id);
             result = true;
         }
+
+        return result;
+    }
+
+    /**
+     * Delete boolean.
+     *
+     * @param id the id
+     * @return the boolean
+     */
+    public boolean delete(String id) {
+        boolean result = false;
+        int index = indexOf(id);
+        if (index >= 0) {
+            items[index] = null;
+            position--;
+            result = true;
+        }
+
+        System.arraycopy(items, index + 1, items, index, position - index);
 
         return result;
     }
