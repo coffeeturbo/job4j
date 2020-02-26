@@ -77,7 +77,9 @@ public class StartUI {
         Item item = new Item(name);
         item.setId(id);
 
-        tracker.replace(id, item);
+        if (tracker.replace(id, item)) {
+            System.out.println("positionId: " + id + " Успешно отредактирована!");
+        }
     }
 
     private void deleteItem(Scanner scanner, Tracker tracker) {
@@ -85,10 +87,9 @@ public class StartUI {
         System.out.print("Enter id: ");
         String id = scanner.nextLine();
 
-        Item item = tracker.findById(id);
-
-        System.out.println("positionId: " + item.getId()
-                + " PosName: " + item.getName());
+        if (tracker.delete(id)) {
+            System.out.println("positionId: " + id + " Успешно удалена!");
+        }
     }
 
     private void findItemById(Scanner scanner, Tracker tracker) {
