@@ -19,22 +19,22 @@ public class StartUI {
 
             switch (select) {
                 case 0:
-                    this.addNewItem(input, tracker);
+                    StartUI.createItem(input, tracker);
                     break;
                 case 1:
-                    this.showAllItems(tracker);
+                    StartUI.showAllItems(tracker);
                     break;
                 case 2:
-                    this.editItem(input, tracker);
+                    StartUI.replaceItem(input, tracker);
                     break;
                 case 3:
-                    this.deleteItem(input, tracker);
+                    StartUI.deleteItem(input, tracker);
                     break;
                 case 4:
-                    this.findItemById(input, tracker);
+                    StartUI.findItemById(input, tracker);
                     break;
                 case 5:
-                    this.findItemByName(input, tracker);
+                    StartUI.findItemByName(input, tracker);
                     break;
                 case 6:
                 default:
@@ -43,14 +43,14 @@ public class StartUI {
         }
     }
 
-    private void addNewItem(Input input, Tracker tracker) {
+    private static void createItem(Input input, Tracker tracker) {
         System.out.println("=== Create a new Item ====");
         String name = input.askStr("Enter name: ");
         Item item = new Item(name);
         tracker.add(item);
     }
 
-    private void showAllItems(Tracker tracker) {
+    private static void showAllItems(Tracker tracker) {
         System.out.println("=== Show all items ====");
 
         int size = tracker.findAll().length;
@@ -63,7 +63,7 @@ public class StartUI {
 
     }
 
-    private void editItem(Input input, Tracker tracker) {
+    private static void replaceItem(Input input, Tracker tracker) {
         System.out.println("=== Edit Item by id ====");
         String id = input.askStr("Enter id: ");
         String name = input.askStr("Введите имя item");
@@ -76,7 +76,7 @@ public class StartUI {
         }
     }
 
-    private void deleteItem(Input input, Tracker tracker) {
+    private static void deleteItem(Input input, Tracker tracker) {
         System.out.println("=== Delete Item by id ====");
         String id = input.askStr("Enter id: ");
 
@@ -85,7 +85,7 @@ public class StartUI {
         }
     }
 
-    private void findItemById(Input input, Tracker tracker) {
+    private static void findItemById(Input input, Tracker tracker) {
         System.out.println("=== Find Item by name ====");
         String id = input.askStr("Enter id: ");
 
@@ -96,7 +96,7 @@ public class StartUI {
 
     }
 
-    private void findItemByName(Input input, Tracker tracker) {
+    private static void findItemByName(Input input, Tracker tracker) {
         System.out.println("=== Find Item by name ====");
         String name = input.askStr("Enter name: ");
 
