@@ -90,10 +90,10 @@ public class StartUI {
         String id = input.askStr("Enter id: ");
 
         Item item = tracker.findById(id);
-
-        System.out.println("positionId: " + item.getId()
-                + " PosName: " + item.getName());
-
+        if (item != null) {
+            System.out.println("positionId: " + item.getId()
+                    + " PosName: " + item.getName());
+        }
     }
 
     public static void findItemByName(Input input, Tracker tracker) {
@@ -104,8 +104,10 @@ public class StartUI {
 
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
-            System.out.println("positionId: " + item.getId()
-                    + " PosName: " + item.getName());
+            if (item != null) {
+                System.out.println("positionId: " + item.getId()
+                        + " PosName: " + item.getName());
+            }
         }
     }
 
