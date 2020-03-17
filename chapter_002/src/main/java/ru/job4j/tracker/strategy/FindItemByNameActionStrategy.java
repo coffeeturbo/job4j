@@ -19,10 +19,8 @@ public class FindItemByNameActionStrategy implements UserActionStrategy {
 
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
-            if (item != null) {
-                System.out.println("positionId: " + item.getId()
-                        + " PosName: " + item.getName());
-            }
+            System.out.println("positionId: " + item.getId()
+                    + " PosName: " + item.getName());
         }
         return true;
     }

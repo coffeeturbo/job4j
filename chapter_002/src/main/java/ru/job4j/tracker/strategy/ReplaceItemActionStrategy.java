@@ -16,7 +16,6 @@ public class ReplaceItemActionStrategy implements UserActionStrategy {
         String name = input.askStr("Введите имя item");
 
         Item item = new Item(name);
-        item.setId(id);
 
         if (tracker.replace(id, item)) {
             System.out.println("positionId: " + id + " Успешно отредактирована!");
