@@ -11,6 +11,19 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class StartUITest {
+
+    @Test
+    public void init() {
+
+        StartUI ui = new StartUI();
+        String[] answers = {"0"};
+        StubInput input = new StubInput(answers);
+        StubAction action = new StubAction();
+        ui.init(input, new Tracker(), new UserActionStrategy[] {action});
+
+        assertThat(action.isCall(), is(true));
+    }
+
     @Test
     public void whenAddItem() {
         String[] answers = {"Fix Pc"};
