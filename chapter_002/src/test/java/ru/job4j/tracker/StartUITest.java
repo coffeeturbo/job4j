@@ -1,6 +1,11 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.strategy.CreateActionStrategy;
+import ru.job4j.tracker.strategy.DeleteItemActionStrategy;
+import ru.job4j.tracker.strategy.ReplaceItemActionStrategy;
+import ru.job4j.tracker.strategy.UserActionStrategy;
+
 import static org.hamcrest.Matchers.is;
 
 import static org.junit.Assert.*;
@@ -11,7 +16,10 @@ public class StartUITest {
         String[] answers = {"Fix Pc"};
         Input input = new StubInput(answers);
         Tracker tracker = new Tracker();
-        StartUI.createItem(input, tracker);
+
+        UserActionStrategy create = new CreateActionStrategy();
+        create.execute(input, tracker);
+
         Item created = tracker.findAll()[0];
         Item expected = new Item("Fix Pc");
         assertThat(created.getName(), is(expected.getName()));
@@ -27,7 +35,8 @@ public class StartUITest {
         String[] answers = {item.getId(), "Replace Item"};
         Input input = new StubInput(answers);
 
-        StartUI.replaceItem(input, tracker);
+        UserActionStrategy replace = new ReplaceItemActionStrategy();
+        replace.execute(input, tracker);
 
         Item replaced = tracker.findById(item.getId());
         assertThat(replaced.getName(), is("Replace Item"));
@@ -43,7 +52,8 @@ public class StartUITest {
         String[] answers = {item.getId(), "Replace Item"};
         Input input = new StubInput(answers);
 
-        StartUI.deleteItem(input, tracker);
+        UserActionStrategy delete = new DeleteItemActionStrategy();
+        delete.execute(input, tracker);
 
         Item replaced = tracker.findById(item.getId());
         assertNull(replaced);
