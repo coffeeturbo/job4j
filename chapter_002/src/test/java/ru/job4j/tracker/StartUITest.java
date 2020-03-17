@@ -6,6 +6,10 @@ import ru.job4j.tracker.strategy.DeleteItemActionStrategy;
 import ru.job4j.tracker.strategy.ReplaceItemActionStrategy;
 import ru.job4j.tracker.strategy.UserActionStrategy;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.StringJoiner;
+
 import static org.hamcrest.Matchers.is;
 
 import static org.junit.Assert.*;
@@ -22,6 +26,24 @@ public class StartUITest {
         ui.init(input, new Tracker(), new UserActionStrategy[] {action});
 
         assertThat(action.isCall(), is(true));
+    }
+
+    @Test
+    public void whenPrtMenu() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream def = System.out;
+        System.setOut(new PrintStream(out));
+        StubInput input = new StubInput(
+                new String[] {"0"}
+        );
+        StubAction action = new StubAction();
+        new StartUI().init(input, new Tracker(), new UserActionStrategy[] {action});
+        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                .add("Menu.")
+                .add("0 Stub name")
+                .toString();
+        assertThat(new String(out.toByteArray()), is(expect));
+        System.setOut(def);
     }
 
     @Test
