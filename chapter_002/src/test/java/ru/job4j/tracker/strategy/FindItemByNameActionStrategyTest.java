@@ -2,7 +2,7 @@ package ru.job4j.tracker.strategy;
 
 import org.junit.Test;
 import ru.job4j.tracker.Item;
-import ru.job4j.tracker.StubInput;
+import ru.job4j.tracker.input.StubInput;
 import ru.job4j.tracker.Tracker;
 
 import java.io.ByteArrayOutputStream;
