@@ -39,7 +39,8 @@ public class StartUI {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-        Input scanner = new ValidateInput();
+        Input input = new ConsoleInput();
+        Input scanner = new ValidateInput(input);
         Tracker tracker = new Tracker();
 
         UserActionStrategy[] actions = {
