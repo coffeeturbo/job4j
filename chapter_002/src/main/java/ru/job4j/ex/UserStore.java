@@ -10,6 +10,7 @@ public class UserStore {
 
            if (users[i].getUsername().equals(login)) {
                 user = users[i];
+                break;
            }
         }
 
