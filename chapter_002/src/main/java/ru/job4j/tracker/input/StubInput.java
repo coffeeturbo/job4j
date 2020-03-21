@@ -5,8 +5,13 @@ public class StubInput implements Input {
     private int position = 0;
 
     @Override
-    public int askInt(String question, int max) {
-        return askInt(question);
+    public int askInt(String question, int max)
+              throws IllegalStateException {
+        int select = askInt(question);
+        if (select < 0 || select >= max) {
+            throw new IllegalStateException(String.format("Out of about %s > [0, %s]", select, max));
+        }
+        return select;
     }
 
     public StubInput(String[] answers) {
