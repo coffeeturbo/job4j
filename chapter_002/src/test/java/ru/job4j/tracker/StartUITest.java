@@ -10,6 +10,7 @@ import ru.job4j.tracker.strategy.UserActionStrategy;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.StringJoiner;
 
 import static org.hamcrest.Matchers.is;
@@ -25,7 +26,9 @@ public class StartUITest {
         String[] answers = {"0"};
         StubInput input = new StubInput(answers);
         StubAction action = new StubAction();
-        ui.init(input, new Tracker(), new UserActionStrategy[] {action});
+        ArrayList<UserActionStrategy> strategies = new ArrayList<UserActionStrategy>();
+        strategies.add(action);
+        ui.init(input, new Tracker(), strategies);
 
         assertThat(action.isCall(), is(true));
     }
@@ -39,7 +42,9 @@ public class StartUITest {
                 new String[] {"0"}
         );
         StubAction action = new StubAction();
-        new StartUI().init(input, new Tracker(), new UserActionStrategy[] {action});
+        ArrayList<UserActionStrategy> strategies = new ArrayList<UserActionStrategy>();
+        strategies.add(action);
+        new StartUI().init(input, new Tracker(), strategies);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("Menu.")
                 .add("0 Stub name")
@@ -57,7 +62,7 @@ public class StartUITest {
         UserActionStrategy create = new CreateActionStrategy();
         create.execute(input, tracker);
 
-        Item created = tracker.findAll()[0];
+        Item created = tracker.findAll().get(0);
         Item expected = new Item("Fix Pc");
         assertThat(created.getName(), is(expected.getName()));
     }

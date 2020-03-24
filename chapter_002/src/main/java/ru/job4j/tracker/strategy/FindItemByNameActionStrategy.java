@@ -4,6 +4,8 @@ import ru.job4j.tracker.input.Input;
 import ru.job4j.tracker.Item;
 import ru.job4j.tracker.Tracker;
 
+import java.util.List;
+
 public class FindItemByNameActionStrategy implements UserActionStrategy {
     @Override
     public String name() {
@@ -15,10 +17,9 @@ public class FindItemByNameActionStrategy implements UserActionStrategy {
         System.out.println(name());
         String name = input.askStr("Enter name: ");
 
-        Item[] items = tracker.findByName(name);
+        List<Item> items = tracker.findByName(name);
 
-        for (int i = 0; i < items.length; i++) {
-            Item item = items[i];
+        for (Item item: items) {
             System.out.println("positionId: " + item.getId()
                     + " PosName: " + item.getName());
         }

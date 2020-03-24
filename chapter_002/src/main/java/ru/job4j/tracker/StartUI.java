@@ -5,6 +5,9 @@ import ru.job4j.tracker.input.Input;
 import ru.job4j.tracker.input.ValidateInput;
 import ru.job4j.tracker.strategy.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The type Start ui.
  */
@@ -15,21 +18,21 @@ public class StartUI {
      * @param input the scanner
      * @param tracker the tracker
      */
-    public void init(Input input, Tracker tracker, UserActionStrategy[] actions) {
+    public void init(Input input, Tracker tracker, List<UserActionStrategy> actions) {
         boolean run = true;
 
         while (run) {
             this.showMenu(actions);
-            int select = Integer.valueOf(input.askInt("Select: ", actions.length));
-            UserActionStrategy action = actions[select];
+            int select = Integer.valueOf(input.askInt("Select: ", actions.size()));
+            UserActionStrategy action = actions.get(select);
             run = action.execute(input, tracker);
         }
     }
 
-    private void showMenu(UserActionStrategy[] actions) {
+    private void showMenu(List<UserActionStrategy> actions) {
         System.out.println("Menu.");
-        for (int i = 0; i < actions.length; i++) {
-            System.out.println(i + " " + actions[i].name());
+        for (UserActionStrategy action: actions) {
+            System.out.println(actions.indexOf(action) + " " + action.name());
         }
     }
 
@@ -52,6 +55,11 @@ public class StartUI {
                 new FindItemByNameActionStrategy(),
         };
 
-        new StartUI().init(scanner, tracker, actions);
+        ArrayList<UserActionStrategy> actionsList = new ArrayList<UserActionStrategy>();
+        for (UserActionStrategy action: actions) {
+            actionsList.add(action);
+        }
+
+        new StartUI().init(scanner, tracker, actionsList);
     }
 }
