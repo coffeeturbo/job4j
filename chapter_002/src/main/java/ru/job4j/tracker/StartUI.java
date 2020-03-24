@@ -6,6 +6,7 @@ import ru.job4j.tracker.input.ValidateInput;
 import ru.job4j.tracker.strategy.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -46,19 +47,14 @@ public class StartUI {
         Input scanner = new ValidateInput(input);
         Tracker tracker = new Tracker();
 
-        UserActionStrategy[] actions = {
+        List<UserActionStrategy> actionsList =  Arrays.asList(
                 new CreateActionStrategy(),
                 new ShowAllItemsActionStrategy(),
                 new DeleteItemActionStrategy(),
                 new ReplaceItemActionStrategy(),
                 new FindItemByIdActionStrategy(),
-                new FindItemByNameActionStrategy(),
-        };
-
-        ArrayList<UserActionStrategy> actionsList = new ArrayList<UserActionStrategy>();
-        for (UserActionStrategy action: actions) {
-            actionsList.add(action);
-        }
+                new FindItemByNameActionStrategy()
+        );
 
         new StartUI().init(scanner, tracker, actionsList);
     }
