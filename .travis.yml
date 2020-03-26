@@ -18,6 +18,6 @@ after_success:
 notifications:
   email:
     recipients:
-      -jobcoffeeturbo@yandex.ru
+#      -at@yandex.ru
     on_success: never # default: change
     on_failure: always # default: al,ways
