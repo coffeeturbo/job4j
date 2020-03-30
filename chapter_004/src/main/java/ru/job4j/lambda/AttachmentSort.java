@@ -23,21 +23,10 @@ public class AttachmentSort {
         attachments.sort(comparator);
         System.out.println(attachments);
         // Здесь создайте компаратор на основании анонимного класса.
-
-
         Comparator<Attachment> nameComparator = new Comparator<Attachment>() {
             @Override
             public int compare(Attachment o1, Attachment o2) {
-
-                int rsl = 0;
-                for (int i = 0; i < Integer.min(o1.getName().length(), o2.getName().length()); i++) {
-                    rsl = Character.compare(o1.getName().charAt(i), o2.getName().charAt(i));
-                    if (rsl != 0) {
-                        return rsl;
-                    }
-                }
-                rsl = o1.getName().length() - o2.getName().length();
-                return rsl;
+                return o1.getName().compareTo(o2.getName());
             }
         };
 
