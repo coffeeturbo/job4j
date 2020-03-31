@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.is;
 public class NotifyAccountTest {
     @Test
     public void sent() {
-        List<Account> accounts = new ArrayList<>(Set.of(
+        List<Account> accounts = new ArrayList<>(List.of(
             new Account("123", "Petr Arsentev", "eDer3432f"),
             new Account("142", "Petr Arsentev", "000001")
         ));
@@ -26,7 +26,7 @@ public class NotifyAccountTest {
     @Test
     public void sentWhenDuplicate() {
         List<Account> accounts = new ArrayList<>(
-            Set.of(
+            List.of(
                 new Account("123", "Petr Arsentev", "eDer3432f"),
                 new Account("142", "Petr Arsentev", "000001"),
                 new Account("142", "Petr Arsentev2", "000002")
