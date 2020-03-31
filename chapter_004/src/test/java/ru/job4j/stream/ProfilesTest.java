@@ -23,9 +23,9 @@ public class ProfilesTest {
         List<Address> actual =  Profiles.collect(profiles);
 
         List<Address> exprected = List.of(
-                new Address("Москва", "1",  1, 1),
                 new Address("London", "2",  2, 2),
-                new Address("New york", "3",  3, 3)
+                new Address("New york", "3",  3, 3),
+                new Address("Москва", "1",  1, 1)
         );
 
         assertEquals(exprected, actual);
