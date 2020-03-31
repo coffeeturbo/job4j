@@ -11,8 +11,8 @@ public class School {
 
     public static List<Student> collect(List<Student> students, Predicate<Student> predict) {
         List<Student> aGroupStudends = students.stream()
-                .filter(student ->  predict.test(student)
-                ).collect(Collectors.toList());
+                .filter(predict)
+                .collect(Collectors.toList());
 
         return aGroupStudends;
     }
@@ -34,7 +34,7 @@ public class School {
         List<Student> filtered = students.stream()
                 .flatMap(Stream::ofNullable)
                 .sorted(Comparator.naturalOrder())
-                .takeWhile(student -> student.getScore() >= bound)
+                .takeWhile(student -> student.getScore() > bound)
                 .collect(Collectors.toList());
         return filtered;
     }

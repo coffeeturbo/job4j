@@ -14,6 +14,8 @@ public class SchoolTest {
             new Student(10),
             new Student(30),
             new Student(50),
+            new Student(55),
+            new Student(60),
             new Student(70),
             new Student(90),
             new Student(100)
@@ -44,12 +46,11 @@ public class SchoolTest {
     public void whenStudentClassA() {
 
         List<Student> expectlist = List.of(
-                new Student(70),
                 new Student(90),
                 new Student(100)
         );
 
-        Predicate<Student> predicateA = student -> student.getScore() >= 70;
+        Predicate<Student> predicateA = student -> student.getScore() > 70;
         List<Student> actual = School.collect(list, predicateA);
 
         assertEquals(expectlist, actual);
@@ -58,13 +59,13 @@ public class SchoolTest {
     @Test
     public void whenStudentClassB() {
         List<Student> expectlist = List.of(
-                new Student(50),
-                new Student(70)
+                new Student(55),
+                new Student(60)
         );
 
         Predicate<Student> predicateB = student ->
-                student.getScore() >= 50
-                && student.getScore() <= 70;
+                student.getScore() > 50
+                        && student.getScore() < 70;
 
         List<Student> actual = School.collect(list, predicateB);
 
@@ -75,13 +76,12 @@ public class SchoolTest {
     public void whenStudentClassC() {
         List<Student> expectlist = List.of(
                 new Student(10),
-                new Student(30),
-                new Student(50)
+                new Student(30)
         );
 
         Predicate<Student> predicateB = student ->
-                student.getScore() >= 0
-                        && student.getScore() <= 50;
+                student.getScore() > 0
+                        && student.getScore() < 50;
 
         List<Student> actual = School.collect(list, predicateB);
 
