@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
 
 public class SchoolTest {
     private List<Student> list = List.of(
@@ -17,6 +18,7 @@ public class SchoolTest {
             new Student(90),
             new Student(100)
     );
+
     private List<Student> listWithNames = List.of(
             new Student("Ivan", 10),
             new Student("Peter", 30),
@@ -24,6 +26,18 @@ public class SchoolTest {
             new Student("David", 70),
             new Student("Jesus", 90),
             new Student("Christian", 100)
+    );
+
+    private List<Student> listWithNullNames = List.of(
+            new Student("Ivan", 10),
+            new Student("Peter", 30),
+            new Student(null, 0),
+            new Student("Aslan", 50),
+            new Student(null, 0),
+            new Student("David", 70),
+            new Student("Jesus", 90),
+            new Student("Christian", 100),
+            new Student(null, 0)
     );
 
     @Test
@@ -82,5 +96,12 @@ public class SchoolTest {
         assertEquals("Jesus", key);
         assertEquals(90, actual.get(key).getScore());
 
+    }
+
+    @Test
+    public void whenLevelOf70() {
+        List<Student> greater70 = School.levelOf(listWithNullNames, 70);
+
+        greater70.forEach(student -> greaterThanOrEqualTo(70));
     }
 }

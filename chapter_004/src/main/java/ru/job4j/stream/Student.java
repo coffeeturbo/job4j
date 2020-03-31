@@ -1,10 +1,14 @@
 package ru.job4j.stream;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class Student {
+public class Student implements Comparable<Student> {
 
-    private String surName;
+    private String name;
     private int score;
 
     @Override
@@ -15,8 +19,8 @@ public class Student {
     public Student(int score) {
         this.score = score;
     }
-    public Student(String surName, int score) {
-        this.surName = surName;
+    public Student(String name, int score) {
+        this.name = name;
         this.score = score;
     }
 
@@ -24,9 +28,10 @@ public class Student {
         return score;
     }
 
-    public String getSurName() {
-        return surName;
+    public String getName() {
+        return name;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -38,11 +43,16 @@ public class Student {
         }
         Student student = (Student) o;
         return score == student.score
-                && Objects.equals(surName, student.surName);
+                && Objects.equals(name, student.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(surName, score);
+        return Objects.hash(name, score);
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        return Integer.compare(score, o.getScore());
     }
 }
