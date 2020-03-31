@@ -24,7 +24,7 @@ public class PhoneDictionary {
                 || person.getPhone().contains(key);
 
         ArrayList<Person> result = new ArrayList<>();
-        for (Person person: this.persons) {
+        for (var person: this.persons) {
             if (combine.test(person)) {
                 result.add(person);
             }
