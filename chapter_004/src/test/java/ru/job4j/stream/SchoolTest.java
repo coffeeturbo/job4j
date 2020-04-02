@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.junit.Assert.assertEquals;
 
 public class SchoolTest {
     private List<Student> list = List.of(
@@ -59,13 +59,14 @@ public class SchoolTest {
     @Test
     public void whenStudentClassB() {
         List<Student> expectlist = List.of(
+                new Student(50),
                 new Student(55),
                 new Student(60)
         );
 
         Predicate<Student> predicateB = student ->
-                student.getScore() > 50
-                        && student.getScore() < 70;
+                student.getScore() >= 50
+                && student.getScore() < 70;
 
         List<Student> actual = School.collect(list, predicateB);
 
@@ -80,7 +81,7 @@ public class SchoolTest {
         );
 
         Predicate<Student> predicateB = student ->
-                student.getScore() > 0
+                student.getScore() >= 0
                         && student.getScore() < 50;
 
         List<Student> actual = School.collect(list, predicateB);
