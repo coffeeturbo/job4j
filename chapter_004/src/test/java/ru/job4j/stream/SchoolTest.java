@@ -46,11 +46,12 @@ public class SchoolTest {
     public void whenStudentClassA() {
 
         List<Student> expectlist = List.of(
+                new Student(70),
                 new Student(90),
                 new Student(100)
         );
 
-        Predicate<Student> predicateA = student -> student.getScore() > 70;
+        Predicate<Student> predicateA = student -> student.getScore() >= 70;
         List<Student> actual = School.collect(list, predicateA);
 
         assertEquals(expectlist, actual);
