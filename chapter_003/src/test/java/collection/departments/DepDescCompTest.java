@@ -2,8 +2,9 @@ package collection.departments;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.lessThan;
+import static org.junit.Assert.assertThat;
 
 public class DepDescCompTest {
     @Test
@@ -12,7 +13,7 @@ public class DepDescCompTest {
                 "K2/SK1/SSK2",
                 "K2/SK1/SSK1"
         );
-        assertThat(rsl, lessThan(0));
+        assertThat(rsl, greaterThan(0));
     }
 
     @Test
