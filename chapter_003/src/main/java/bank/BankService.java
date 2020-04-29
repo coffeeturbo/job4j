@@ -1,9 +1,6 @@
 package bank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BankService {
     private Map<User, List<Account>> users = new HashMap<>();
@@ -13,33 +10,43 @@ public class BankService {
     }
 
     public void addAccount(String passport, Account account) {
-        User user = findByPassport(passport);
-        if (user != null) {
-            users.get(user).add(account);
+        Optional<User> user = findByPassport(passport);
+        if (user.isPresent()) {
+            users.get(user.get()).add(account);
         }
     }
 
-    public User findByPassport(String passport) {
-
-        User resultUser = users.keySet()
+    public Optional<User> findByPassport(String passport) {
+        Optional<User> resultUser = Optional.empty();
+        var result = users.keySet()
                 .stream()
                 .filter(user -> user.getPassport().equals(passport))
+                .distinct()
                 .findFirst()
                 .orElse(null);
+
+        if (result != null) {
+            resultUser = Optional.of(result);
+        }
 
         return resultUser;
     }
 
-    public Account findByRequisite(String passport, String requisite) {
-        Account result = null;
-        User user = findByPassport(passport);
+    public Optional<Account> findByRequisite(String passport, String requisite) {
+        Optional<Account> result = Optional.empty();
+        Optional<User> user = findByPassport(passport);
+        Account search = null;
 
-        if (user != null) {
-             result = users.get(user)
+        if (user.isPresent()) {
+            search = users.get(user.get())
                     .stream()
                     .filter(account -> account.getRequisite().equals(requisite))
                     .findFirst()
                     .orElse(null);
+        }
+
+        if (search != null) {
+            result = Optional.of(search);
         }
 
         return result;
@@ -51,14 +58,14 @@ public class BankService {
                                  String destRequisite,
                                  double amount) {
         boolean rsl = false;
-        Account source = findByRequisite(srcPassport, srcRequisite);
-        Account target = findByRequisite(destPassport, destRequisite);
-        if (source != null
-                && target != null
-                && source.getBalance() >= amount
+        Optional<Account> source = findByRequisite(srcPassport, srcRequisite);
+        Optional<Account> target = findByRequisite(destPassport, destRequisite);
+        if (source.isPresent()
+                && target.isPresent()
+                && source.get().getBalance() >= amount
         ) {
-            source.setBalance(source.getBalance() - amount);
-            target.setBalance(target.getBalance() + amount);
+            source.get().setBalance(source.get().getBalance() - amount);
+            target.get().setBalance(target.get().getBalance() + amount);
             rsl = true;
         }
 
